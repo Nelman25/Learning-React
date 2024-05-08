@@ -1,10 +1,8 @@
-import ToDoList from "./ToDoList";
+import Button from './Button.jsx'
 function App() {
+  
   return(
-    <>
-      <ToDoList/>
-    </>
+    <Button />
   );
 }
-
 export default App
