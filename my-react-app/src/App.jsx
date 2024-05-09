@@ -1,8 +1,5 @@
-import Button from './Button.jsx'
+import ProfilePicture from "./ProfilePicture"
 function App() {
-  
-  return(
-    <Button />
-  );
+  return(<ProfilePicture />);
 }
 export default App
