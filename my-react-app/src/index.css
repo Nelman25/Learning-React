@@ -1,6 +1,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: black;
+    background-image: linear-gradient(black, rgb(100, 100, 100));
   padding: 40px 40px;
   text-align: center;
   display: flex;
@@ -19,6 +19,7 @@ button {
   background-color: #ff8ba0;
   border: none;
   border-radius: 5px;
+  transition: background-color 0.5s ease;
   color: white;
 }
 #container {
@@ -28,5 +29,7 @@ button {
   height: 800px;
   border-radius: 30px;
   box-shadow: 5px 5px 20px rgba(189, 189, 189, 0.815);
-
+}
+button:hover {
+    background-color: hsl(349, 100%, 67%);
 }
