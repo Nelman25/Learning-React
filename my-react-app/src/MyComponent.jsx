@@ -1,40 +1,23 @@
-// updater function - a function passed as an argument to useState() usually
-//                    ex. setYear(arrow function)
-//                    Allow for safe updates based on the previous state
-//                    used with multiple state updates and asynchronous functions
-//                    good practice to use updater functions
+import React, { useState } from 'react';
 
+function MyComponent(){
+    const [car, setCar] = useState({year: 2024, make: "Ford", model:"Mustang"});
+    function handleYearChange(event){
+        setCar(c => ({...c, year: event.target.value}));
+    }
+    function handleMakeChange(event){
+        setCar(c => ({...c, make: event.target.value}));
+    }
+    function handleModelChange(event){
+        setCar( c => ({...c, model: event.target.value}));
+    }
 
-
-import React, { useState } from "react";
-function MyComponent() {
-  const [count, setCount] = useState(0);
-
-  function increment() {
-    
-    //  Takes the PENDING state to calculate NEXT state.
-    //  React puts your updater function in a queue (data structure).
-    //  During the next render, it will call them in the same order.
-
-    setCount((c) => c + 1);
-    setCount((c) => c + 1);
-    setCount((c) => c + 1);
-  }
-  function decrement() {
-    setCount((c) => c - 1);
-    setCount((c) => c - 1);
-    setCount((c) => c - 1);
-  }
-  function reset() {
-    setCount(0);
-  }
-  return (
-    <div>
-      <p>Count: {count}</p>
-      <button onClick={decrement}>Decrement</button>
-      <button onClick={reset}>Reset</button>
-      <button onClick={increment}>Increment</button>
-    </div>
-  );
-}
-export default MyComponent;
+    return(
+        <div>
+            <p>Your favorite car is: {car.year} {car.make} {car.model}</p>
+            <input type="number" value={car.year} onChange={handleYearChange} /><br />
+            <input type="text" value={car.make} onChange={handleMakeChange} /><br />
+            <input type="text" value={car.model} onChange={handleModelChange} />
+        </div>
+    );
+}export default MyComponent
