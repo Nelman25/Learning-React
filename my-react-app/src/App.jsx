@@ -1,5 +1,6 @@
-import MyComponent from "./MyComponent";
-
-function App() {
-  return(<MyComponent/>);
+import MyComponent from './MyComponent.jsx'
+function App(){
+  return(
+    <MyComponent/>
+  );
 }export default App
