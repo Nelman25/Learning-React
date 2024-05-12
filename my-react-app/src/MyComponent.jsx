@@ -1,52 +1,45 @@
 import React, { useState } from "react";
 
 function MyComponent() {
-  const [cars, setCars] = useState([]);
-  const [carYear, setCarYear] = useState(new Date().getFullYear());
-  const [carMake, setCarMake] = useState("");
-  const [carModel, setCarModel] = useState("");
+  const [students, setStudents] = useState([]);
+  const [studentName, setStudentName] = useState("");
+  const [studentID, setStudentID] = useState("");
 
-  function handleAddCar() {
-    const newCar = { year: carYear, make: carMake, model: carModel };
+  function handleAddStudent() {
 
-    setCars((c) => [...c, newCar]);
+    const newStudent = {name: studentName, ID: studentID};
 
-    setCarYear(new Date().getFullYear());
-    setCarMake("");
-    setCarModel("");
+    setStudents(s => [...s, newStudent]);
+
+    setStudentName("");
+    setStudentID("");
   }
-
-  function handleRemoveCar(index) {
-    setCars(c => c.filter((_,i) => i!==index));
+  function handleRemoveStudent(index) {
+    setStudents(s => s.filter((_,i) => i!==index));
   }
-
-  function handleYearChange(event) {
-    setCarYear(event.target.value);
+  function handleNameChange(event) {
+    setStudentName(event.target.value);
   }
-
-  function handleMakeChange(event) {
-    setCarMake(event.target.value);
-  }
-
-  function handleModelChange(event) {
-    setCarModel(event.target.value);
+  function handleIDChange(event) {
+    setStudentID(event.target.value);
   }
 
   return (
     <div>
-      <h1>List of Car Objects</h1>
+      <h1>List of Enrolled Students with their student ID</h1>
       <ul>
-        {cars.map((car, index) => (
-          <li key={index} onClick={() => handleRemoveCar(index)}>{car.year} {car.make} {car.model} </li>
+        <li></li>
+        {students.map((student, index) => (
+          <li key={index} onClick={() => handleRemoveStudent(index)}> Name: {student.name} ___ Student ID: {student.ID}</li>
         ))}
       </ul>
-      <input type="number" value={carYear} onChange={handleYearChange} />
+      <label>Name: </label>
+      <input type="text" value={studentName} placeholder="Enter your name" onChange={handleNameChange} />
       <br />
-      <input type="text" value={carMake} onChange={handleMakeChange} />
+      <label>Student ID:  </label>
+      <input type="text" value={studentID} placeholder="Enter your student ID" onChange={handleIDChange} />
       <br />
-      <input type="text" value={carModel} onChange={handleModelChange} />
-      <br />
-      <button onClick={handleAddCar}>Add Car</button>
+      <button onClick={handleAddStudent}>Add Student</button>
     </div>
   );
 }
