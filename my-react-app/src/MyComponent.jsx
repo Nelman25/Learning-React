@@ -1,46 +1,51 @@
-import React, { useState } from "react";
+//  useEffect() - React hook that tells React DO SOME CODE WHEN (pick one):
+//                This component re-renders
+//                This component mounts
+//                The state of a value
 
-function MyComponent() {
-  const [students, setStudents] = useState([]);
-  const [studentName, setStudentName] = useState("");
-  const [studentID, setStudentID] = useState("");
+//  useEffect(function, [dependencies])
 
-  function handleAddStudent() {
+//  1. useEffect(() => {})          // Runs after every re-render
+//  2. useEffect(() => {}, [])      // Runs only on mount
+//  3. useEffect(() => {}, [value]) // Runs on mount + when value changes
 
-    const newStudent = {name: studentName, ID: studentID};
+//  USES 
+//  1. Event Listeners
+//  2. DOM Manipulations
+//  3. Subscriptions (real-time updates)
+//  4. Fetching Data from an API
+//  5. Clean up when a component unmounts
+import React, { useState, useEffect } from 'react';
 
-    setStudents(s => [...s, newStudent]);
+function MyComponent(){
 
-    setStudentName("");
-    setStudentID("");
+  const [count, setCount] = useState(0);
+  const [color, setColor] = useState("green");
+
+  useEffect(() => {
+    document.title = `Count: ${count} ${color}`;
+  }, [count, color])
+
+  function addCount(){
+    setCount(c => c + 1);
   }
-  function handleRemoveStudent(index) {
-    setStudents(s => s.filter((_,i) => i!==index));
+
+  function subtractCount(){
+    setCount(c => c - 1);
   }
-  function handleNameChange(event) {
-    setStudentName(event.target.value);
-  }
-  function handleIDChange(event) {
-    setStudentID(event.target.value);
+  
+  function changeColor(){
+    setColor(c => c === "green" ? "red" : "green");
   }
 
-  return (
-    <div>
-      <h1>List of Enrolled Students with their student ID</h1>
-      <ul>
-        <li></li>
-        {students.map((student, index) => (
-          <li key={index} onClick={() => handleRemoveStudent(index)}> Name: {student.name} ___ Student ID: {student.ID}</li>
-        ))}
-      </ul>
-      <label>Name: </label>
-      <input type="text" value={studentName} placeholder="Enter your name" onChange={handleNameChange} />
-      <br />
-      <label>Student ID:  </label>
-      <input type="text" value={studentID} placeholder="Enter your student ID" onChange={handleIDChange} />
-      <br />
-      <button onClick={handleAddStudent}>Add Student</button>
-    </div>
-  );
+  return(
+    <>
+      <p style={{color: color}}>Count: {count}</p>
+      <button onClick={addCount}>Add</button>
+      <button onClick={subtractCount}>Subtract</button> <br />
+      <button onClick={changeColor}>Change Color</button>
+    </>
+  )
 }
-export default MyComponent;
+
+export default MyComponent
