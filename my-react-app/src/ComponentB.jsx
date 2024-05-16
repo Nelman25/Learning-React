@@ -1,11 +1,16 @@
+import React, {useContext} from 'react';
+import { UserContext } from './ComponentA';
 import ComponentC from "./ComponentC"
 
-function ComponentB(props){
+function ComponentB(){
 
-    return(
+    const user = useContext(UserContext);
+
+    return( 
         <div className='box'>
             <h1>ComponentB</h1>
-            <ComponentC user={props.user}/>
+            <h2>Hello again, {user}</h2>
+            <ComponentC />
         </div>
     )
 }
