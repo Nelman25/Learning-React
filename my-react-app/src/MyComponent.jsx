@@ -33,7 +33,7 @@ function MyComponent(){
         inputRef3.current.style.backgroundColor = "lightBlue"    }
     return(
         <div>
-            <button onClick={handleClick1}>Click Me!</button>
+            <button onClick={handleClick1}>ddawd Me!</button>
             <input ref={inputRef1} /><br />
 
             <button onClick={handleClick2}>Click Me!</button>
